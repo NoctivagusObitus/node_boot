@@ -14,6 +14,7 @@ CONFIG_FIT_RSASSA_PSS=y
 CONFIG_FIT_CIPHER=y
 CONFIG_DEFAULT_FDT_FILE="signed-devicetree.dtb"
 CONFIG_ENV_IS_NOWHERE=y
+SYS_DISABLE_AUTOLOAD=y
 CONFIG_BOOTCOMMAND="setenv cmdline console=serial0,115200 console=tty1 elevator=deadline fsck.repair=yes rootwait;setenv autoload no;dhcp;dns markus ${fit_image_host}; wget ${kernel_addr_r} ${fit_image_host}:/image.fit;bootm ${kernel_addr_r}#config-1;"
 CONFIG_NET_TFTP_VARS=n
 CONFIG_CMD_NFS=n
