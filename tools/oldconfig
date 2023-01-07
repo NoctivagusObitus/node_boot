@@ -15,16 +15,10 @@ CONFIG_FIT_CIPHER=y
 CONFIG_DEFAULT_FDT_FILE="signed-devicetree.dtb"
 CONFIG_ENV_IS_NOWHERE=y
 CONFIG_BOOTCOMMAND="setenv cmdline console=serial0,115200 console=tty1 elevator=deadline fsck.repair=yes rootwait;setenv autoload no;dhcp;dns markus ${fit_image_host}; wget ${kernel_addr_r} ${fit_image_host}:/image.fit;bootm ${kernel_addr_r}#config-1;"
-CONFIG_CMD_BOOTP=n
-CONFIG_BOOTP_BOOTPATH=n
-CONFIG_BOOTP_DNS=n
-CONFIG_BOOTP_GATEWAY=n
-CONFIG_BOOTP_HOSTNAME=n
-CONFIG_BOOTP_SUBNETMASK=n
-CONFIG_BOOTP_PXE=n
-CONFIG_CMD_TFTPBOOT=n
 CONFIG_NET_TFTP_VARS=n
-CONFIG_PXE_UTILS=n
-CONFIG_BOOTMETH_DISTRO_PXE=n
-CONFIG_BOOTP_PXE=n
-CONFIG_CMD_PXE=n
+CONFIG_CMD_NFS=n
+# CONFIG_CMD_NFS is not set
+CONFIG_CMD_MII=n
+CONFIG_CMD_MDIO=n
+CONFIG_CMD_PING6=n
+CONFIG_TFTP_TSIZE=n
