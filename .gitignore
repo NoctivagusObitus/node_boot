@@ -1,6 +1,8 @@
-**/*.dtb
+**/*.crt
+**/*.key
 **/*.bin
 **/*.img
 **/*.fit
-**/*.crt
-**/*.key
+**/*.dtb
+**/*.elf
+**/*.dat
