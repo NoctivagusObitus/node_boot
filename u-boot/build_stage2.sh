@@ -19,13 +19,13 @@ check_tools() {
 }
 
 compile_uboot() {
-docker run \
-	--rm \
-	--volume ${SCRIPT_HOME}/image:${UBOOT_DIR}/image \
-	--volume ${SCRIPT_HOME}/tools:${TOOLS_DIR} \
-	--workdir ${UBOOT_DIR} \
-	trini/u-boot-gitlab-ci-runner:${UBOOT_BUILD_IMAGE} \
-	${TOOLS_DIR}/build_fit_image.sh
+	docker run \
+		--rm \
+		--volume ${SCRIPT_HOME}/image:${UBOOT_DIR}/image \
+		--volume ${SCRIPT_HOME}/tools:${TOOLS_DIR} \
+		--workdir ${UBOOT_DIR} \
+		trini/u-boot-gitlab-ci-runner:${UBOOT_BUILD_IMAGE} \
+		${TOOLS_DIR}/build_fit_image.sh
 }
 
 check_tools
