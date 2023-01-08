@@ -57,7 +57,7 @@ sudo chown -R 1000:1000 "${SCRIPT_DIR}" &&
 	cat "${TOOLS_DIR}/oldconfig >> ${UBOOT_DIR}"/.config &&
 	make olddefconfig &&
 	echo "build u-boot for $PLATFORM" &&
-	make -j4 &&
+	make -j "$(nproc)" &&
 	echo "create and sign u-boot image" &&
 	ln -s "${TOOLS_DIR}/${DTB_FILE}" "${UBOOT_DIR}" &&
 	ln -s "${TOOLS_DIR}/${KERNEL_FILE}" "${UBOOT_DIR}" &&

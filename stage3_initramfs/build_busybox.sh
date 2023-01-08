@@ -21,10 +21,9 @@ echo "install cross compiler" &&
 		git://busybox.net/busybox.git \
 		"${BUSYBOX_DIR}" &&
 	cd "${BUSYBOX_DIR}" &&
-	make oldconfig &&
 	make defconfig &&
 	echo "make busybox staticaly compiled for initramfs" &&
-	sed -i 's#.*CONFIG_STATIC.*#CONFIG_STATIC=y#g' .config &&
+	sed -i 's#.*CONFIG_STATIC .*#CONFIG_STATIC=y#g' .config &&
 	echo "build busybox" &&
-	make -j4 &&
+	make -j "$(nproc)" &&
 	cp -v busybox "${SCRIPT_DIR}/bin/"

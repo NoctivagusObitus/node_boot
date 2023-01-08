@@ -19,7 +19,7 @@ check_tools() {
 }
 
 compile_busybox() {
-	docker run \
+	exec docker run \
 		--rm \
 		--volume "${SCRIPT_HOME}/bin:${BUSYBOX_DIR}/bin" \
 		--volume "${SCRIPT_HOME}/build_busybox.sh:${TOOLS_DIR}/build_busybox.sh" \
