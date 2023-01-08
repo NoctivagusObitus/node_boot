@@ -8,10 +8,12 @@ export ARCH=arm64
 export ROSS_COMPILE=arm-linux-gnueabi-
 
 echo "install cross compiler" &&
-	apt-get install -y \
+	sudo apt-get update &&
+	sudo apt-get upgrade -y &&
+	sudo apt-get install -y \
 		gcc-arm-linux-gnueabi \
 		libncurses5-dev \
-		install gawk &&
+		gawk &&
 	echo "setup busybox build" &&
 	git clone \
 		--depth 1 \
@@ -19,9 +21,10 @@ echo "install cross compiler" &&
 		git://busybox.net/busybox.git \
 		"${BUSYBOX_DIR}" &&
 	cd "${BUSYBOX_DIR}" &&
-	make defconfig &&
-	echo "make busybox staticaly compiled for initramfs and set aarch64 crosscompiler" &&
-	sed -i 's#.*CONFIG_STATIC.*#CONFIG_STATIC=y#g' .config &&
 	make oldconfig &&
-	echo "build busybox for $PLATFORM" &&
-	make -j4
+	make defconfig &&
+	echo "make busybox staticaly compiled for initramfs" &&
+	sed -i 's#.*CONFIG_STATIC.*#CONFIG_STATIC=y#g' .config &&
+	echo "build busybox" &&
+	make -j4 &&
+	cp -v busybox "${SCRIPT_DIR}/bin/"
