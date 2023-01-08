@@ -26,4 +26,5 @@ echo "install cross compiler" &&
 	sed -i 's#.*CONFIG_STATIC .*#CONFIG_STATIC=y#g' .config &&
 	echo "build busybox" &&
 	make -j "$(nproc)" &&
-	cp -v busybox "${SCRIPT_DIR}/bin/"
+	make install &&
+	cp -v _install/* "${SCRIPT_DIR}/initramfs/"

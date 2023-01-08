@@ -16,12 +16,18 @@ check_tool() {
 
 check_tools() {
 	check_tool docker --version
+
+	if [ ! -d "${SCRIPT_HOME}/initramfs" ]; then
+		echo "'${SCRIPT_HOME}/initramfs' is not a directory"
+		echo "you want to manually creat it and set permissions "
+		echo "so that inside docker files can be written by UID:GID of 1000:1000"
+	fi
 }
 
 compile_busybox() {
 	exec docker run \
 		--rm \
-		--volume "${SCRIPT_HOME}/bin:${BUSYBOX_DIR}/bin" \
+		--volume "${SCRIPT_HOME}/initramfs:${BUSYBOX_DIR}/initramfs" \
 		--volume "${SCRIPT_HOME}/build_busybox.sh:${TOOLS_DIR}/build_busybox.sh" \
 		--workdir ${BUSYBOX_DIR} \
 		trini/u-boot-gitlab-ci-runner:${UBOOT_BUILD_IMAGE} \

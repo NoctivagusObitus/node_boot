@@ -16,6 +16,12 @@ check_tool() {
 
 check_tools() {
 	check_tool docker --version
+
+	if [ ! -d "${SCRIPT_HOME}/image" ]; then
+		echo "'${SCRIPT_HOME}/image' is not a directory"
+		echo "you want to manually creat it and set permissions "
+		echo "so that inside docker files can be written by UID:GID of 1000:1000"
+	fi
 }
 
 compile_uboot() {
