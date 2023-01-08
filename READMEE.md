@@ -5,6 +5,8 @@ https://source.denx.de/u-boot/u-boot/-/blob/master/doc/build/docker.rst
 
 ## test signiture
 https://github.com/ARM-software/u-boot/blob/master/doc/uImage.FIT/signature.txt
+### nice raspberry pi 3 initramfs tutorial
+https://www.nayab.xyz/book/embedded-linux-rpi3-000-intro#learning-path
 ### signing u-boot build
 https://community.nxp.com/t5/i-MX-Processors/iMX8-U-Boot-FIT-Image-Signature/td-p/1429547
 ### verfy image signiture

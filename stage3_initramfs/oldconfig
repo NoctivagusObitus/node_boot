@@ -1,0 +1,2 @@
+CONFIG_STATIC=y
+CONFIG_CROSS_COMPILER_PREFIX="/opt/gcc-12.2.0-nolibc/aarch64-linux/bin/aarch64-linux-"

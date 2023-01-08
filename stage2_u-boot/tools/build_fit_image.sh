@@ -8,7 +8,7 @@ export PLATFORM=rpi_3_b_plus
 export UBOOT_IMAGE=image.fit
 export UBOOT_VERSION=v2023.01-rc4
 
-export ARCH=arm
+export ARCH=arm64
 export CROSS_COMPILE=/opt/gcc-12.2.0-nolibc/aarch64-linux/bin/aarch64-linux-
 
 sudo chown -R 1000:1000 ${SCRIPT_DIR} \
