@@ -25,7 +25,7 @@ compile_busybox() {
 		--volume "${SCRIPT_HOME}/build_busybox.sh:${TOOLS_DIR}/build_busybox.sh" \
 		--workdir ${BUSYBOX_DIR} \
 		trini/u-boot-gitlab-ci-runner:${UBOOT_BUILD_IMAGE} \
-		${TOOLS_DIR}/build_fit_image.sh
+		${TOOLS_DIR}/build_busybox.sh
 }
 
 check_tools
