@@ -27,4 +27,5 @@ echo "install cross compiler" &&
 	echo "build busybox" &&
 	make -j "$(nproc)" &&
 	make install &&
-	cp -v _install/* "${SCRIPT_DIR}/initramfs/"
+	cp -v _install/* "${SCRIPT_DIR}/initramfs/" &&
+	${TOOLS_DIR}/build_initramfs.sh "${SCRIPT_DIR}/initramfs/"

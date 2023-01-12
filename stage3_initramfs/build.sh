@@ -28,8 +28,9 @@ compile_busybox() {
 	exec docker run \
 		--rm \
 		--volume "${SCRIPT_HOME}/initramfs:${BUSYBOX_DIR}/initramfs" \
-		--volume "${SCRIPT_HOME}/build_busybox.sh:${TOOLS_DIR}/build_busybox.sh" \
+		--volume "${SCRIPT_HOME}/tools/:${TOOLS_DIR}" \
 		--workdir ${BUSYBOX_DIR} \
+		--environment TOOLS_DIR=${TOOLS_dir} \
 		trini/u-boot-gitlab-ci-runner:${UBOOT_BUILD_IMAGE} \
 		${TOOLS_DIR}/build_busybox.sh
 }
