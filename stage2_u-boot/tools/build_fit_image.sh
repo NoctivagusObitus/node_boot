@@ -54,7 +54,7 @@ sudo chown -R 1000:1000 "${SCRIPT_DIR}" &&
 	cd "${UBOOT_DIR}" &&
 	echo "setup u-boot for ${PLATFORM} build" &&
 	make "${PLATFORM}"_defconfig &&
-	cat "${TOOLS_DIR}/oldconfig >> ${UBOOT_DIR}"/.config &&
+	cat "${TOOLS_DIR}/oldconfig" >> "${UBOOT_DIR}"/.config &&
 	make olddefconfig &&
 	echo "build u-boot for $PLATFORM" &&
 	make -j "$(nproc)" &&

@@ -7,14 +7,7 @@ BUSYBOX_TAG=1_35_0
 export ARCH=arm64
 export ROSS_COMPILE=arm-linux-gnueabi-
 
-echo "install cross compiler" &&
-	sudo apt-get update &&
-	sudo apt-get upgrade -y &&
-	sudo apt-get install -y \
-		gcc-arm-linux-gnueabi \
-		libncurses5-dev \
-		gawk &&
-	echo "setup busybox build" &&
+echo echo "setup busybox build" &&
 	git clone \
 		--depth 1 \
 		--branch ${BUSYBOX_TAG} \
@@ -27,5 +20,5 @@ echo "install cross compiler" &&
 	echo "build busybox" &&
 	make -j "$(nproc)" &&
 	make install &&
-	cp -v _install/* "${SCRIPT_DIR}/initramfs/" &&
+	cp -vr _install/* "${SCRIPT_DIR}/initramfs/" &&
 	${TOOLS_DIR}/build_initramfs.sh "${SCRIPT_DIR}/initramfs/"

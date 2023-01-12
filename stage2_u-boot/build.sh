@@ -1,7 +1,5 @@
 #!/bin/sh
 
-UBOOT_BUILD_IMAGE=jammy-20221101-22Nov2022 # https://hub.docker.com/r/trini/u-boot-gitlab-ci-runner/tags
-
 SCRIPT_HOME=$(pwd)
 UBOOT_DIR=/home/uboot
 TOOLS_DIR=${UBOOT_DIR}/tools
@@ -18,9 +16,8 @@ check_tools() {
 	check_tool docker --version
 
 	if [ ! -d "${SCRIPT_HOME}/image" ]; then
-		echo "'${SCRIPT_HOME}/image' is not a directory"
-		echo "you want to manually creat it and set permissions "
-		echo "so that inside docker files can be written by UID:GID of 1000:1000"
+		mkdir -pv "${SCRIPT_HOME}/image" &&
+			chown -R 1000:1000 "${SCRIPT_HOME}/image"
 	fi
 }
 
@@ -30,7 +27,7 @@ compile_uboot() {
 		--volume "${SCRIPT_HOME}/image:${UBOOT_DIR}/image" \
 		--volume "${SCRIPT_HOME}/tools:${TOOLS_DIR}" \
 		--workdir ${UBOOT_DIR} \
-		trini/u-boot-gitlab-ci-runner:${UBOOT_BUILD_IMAGE} \
+		node_boot_build \
 		${TOOLS_DIR}/build_fit_image.sh
 }
 
