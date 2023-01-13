@@ -8,3 +8,4 @@
 **/*.dat
 **/*.cpio
 **/*.gz
+**/linuxrc
