@@ -1,5 +1,7 @@
 #!/bin/sh
 
+FINAL_DIR=$(pwd)/output/
+
 check_tool() {
 	"$@" 1>/dev/null 2>&1 || {
 		echo "$@" "not working"
@@ -17,13 +19,20 @@ check_tools() {
 	fi
 }
 
-check_tool &&
+check_tools &&
 	docker build -t base_image:nocte base_image &&
 	docker build -t u-boot:nocte stage2_u-boot &&
 	docker build -t busybox:nocte stage3_busybox &&
 	docker build -t initramfs:nocte stage4_initramfs &&
 	docker build -t final:nocte final_image &&
-	docker image prune --filter label=stage=builder
+	[ -d "${FINAL_DIR}" ] || mkdir -p "${FINAL_DIR}" &&
+	docker run --rm \
+		-v "${FINAL_DIR}":/home/uboot/final/ \
+		final:nocte \
+		bash -c 'cp -v ${FIT_IMAGE} ${UBOOT_DIR}/u-boot.bin ${KEY_DIR}/* /home/uboot/final/'
+
+#docker image prune --filter label=stage=builder &&
+
 #cd "${BUILD_HOME}"/stage3_initramfs/ &&
 #./build.sh &&
 #echo "find DTB file in ${TOOLS_DIR}" &&
