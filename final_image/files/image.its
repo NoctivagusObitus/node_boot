@@ -32,7 +32,7 @@
     	type = "ramdisk";
     	arch = "arm64";
     	os = "linux";
-    	compression = "gzip";
+    	compression = "none";
     	hash {
     	  algo = "sha1";
     	};
