@@ -1,6 +1,6 @@
 FROM base_image:nocte
 
-ENV UBOOT_VERSION=v2023.01-rc4 \
+ENV UBOOT_VERSION=v2023.01 \
   PLATFORM=rpi_3_b_plus \
   CROSS_COMPILE=/opt/gcc-12.2.0-nolibc/aarch64-linux/bin/aarch64-linux- \
   ARCH=arm64 \
