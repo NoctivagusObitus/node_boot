@@ -9,7 +9,7 @@
       type = "kernel";
       arch = "arm64";
       os = "linux";
-      compression = "gzip";
+      compression = "none";
       load =  <0x06400000>;
       entry = <0x06400000>;
       hash-1 {
