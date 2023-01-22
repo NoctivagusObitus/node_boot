@@ -7,6 +7,7 @@ RUN chmod +x ${INITRAMFS_DIR}/init \
   "${INITRAMFS_DIR}"/proc \
   "${INITRAMFS_DIR}"/dev \
   && echo "create rpi3 device nodes" \
+  && sudo mknod -m 666 ${INITRAMFS_DIR}/dev/null c 1 3 \
   && sudo mknod -m 666 ${INITRAMFS_DIR}/dev/tty c 5 0 \
   && sudo mknod -m 666 ${INITRAMFS_DIR}/dev/console c 5 1 \
   && sudo chown root:tty \
