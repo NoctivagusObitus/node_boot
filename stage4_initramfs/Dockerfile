@@ -11,6 +11,9 @@ RUN chmod +x ${INITRAMFS_DIR}/init \
   && sudo chown root:tty \
   ${INITRAMFS_DIR}/dev/tty \
   ${INITRAMFS_DIR}/dev/console \
+  && ln -sf /dev/null /dev/tty2 \
+  && ln -sf /dev/null /dev/tty3 \
+  && ln -sf /dev/null /dev/tty4 \
   && echo "package initramfs" \
   && cd "${INITRAMFS_DIR}" \
   && find . -print0 | cpio --null --create --verbose --format=newc >"${INITRAMFS_DIR}/initramfs.cpio.gz"
