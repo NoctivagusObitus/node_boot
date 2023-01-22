@@ -8,7 +8,7 @@ RUN chmod +x ${INITRAMFS_DIR}/init \
   && sudo mknod -m 666 ${INITRAMFS_DIR}/dev/tty c 5 0 \
   && sudo mknod -m 666 ${INITRAMFS_DIR}/dev/null c 1 3 \
   && sudo mknod -m 666 ${INITRAMFS_DIR}/dev/console c 5 1 \
-  && chown root:tty \
+  && sudo chown root:tty \
   ${INITRAMFS_DIR}/dev/tty \
   ${INITRAMFS_DIR}/dev/console \
   && echo "package initramfs" \
