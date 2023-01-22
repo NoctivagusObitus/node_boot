@@ -1,6 +1,6 @@
 #!/bin/sh
 
 echo
-ech "rapi net boot"
+echo "rapi net boot"
 echo
 /bin/busybox sh
