@@ -19,4 +19,4 @@ RUN chmod +x ${INITRAMFS_DIR}/init \
   ${INITRAMFS_DIR}/dev/console \
   && echo "package initramfs" \
   && cd "${INITRAMFS_DIR}" \
-  && find . -print0 | cpio --null --create --verbose --format=newc >"${INITRAMFS_DIR}/initramfs.cpio.gz"
+  && find . -print0 | cpio --null --create --verbose --format=newc >"${INITRAMFS_DIR}/initramfs.cpio"
