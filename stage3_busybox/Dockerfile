@@ -21,6 +21,4 @@ RUN mkdir -p ${INITRAMFS_DIR} \
   && make -j "$(nproc)" \
   && make install \
   && echo "build initramfs" \
-  && cp -r _install/* "${INITRAMFS_DIR}/" \
-  && mkdir --parents "${INITRAMFS_DIR}"/proc "${INITRAMFS_DIR}"/dev
-
+  && cp -r _install/* "${INITRAMFS_DIR}/"
