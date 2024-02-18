@@ -2,7 +2,7 @@ FROM u-boot:nocte
 
 ENV BUSYBOX_DIR=${HOME}/busybox \
   INITRAMFS_DIR=${HOME}/initramfs \
-  BUSYBOX_TAG=1_35_0 \
+  BUSYBOX_TAG=1_36_1 \
   ARCH=arm64 \
   CROSS_COMPILE=arm-linux-gnueabi-
 

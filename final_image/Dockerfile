@@ -1,8 +1,8 @@
 FROM initramfs:nocte
 
 ENV FILES=${HOME}/files \
-    FIT_IMAGE=${HOME}/image.fit \
-    KEY_DIR=/home/uboot/key
+  FIT_IMAGE=${HOME}/image.fit \
+  KEY_DIR=/home/uboot/key
 
 COPY --chown=1000:1000 ./files/ ${FILES}/
 

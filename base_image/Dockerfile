@@ -1,4 +1,4 @@
-FROM trini/u-boot-gitlab-ci-runner:jammy-20221130-11Jan2023
+FROM trini/u-boot-gitlab-ci-runner:jammy-20240125-12Feb2024
 
 ENV HOME=/home/uboot \
   ARCH=arm64 \

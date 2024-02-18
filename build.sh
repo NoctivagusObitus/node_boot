@@ -3,33 +3,33 @@
 FINAL_DIR=$(pwd)/output/
 
 check_tool() {
-	"$@" 1>/dev/null 2>&1 || {
-		echo "$@" "not working"
-		exit 1
-	}
-	echo "'$1' seams to be installed"
+  "$@" 1>/dev/null 2>&1 || {
+    echo "$@" "not working"
+    exit 1
+  }
+  echo "'$1' seams to be installed"
 }
 
 check_tools() {
-	check_tool docker --version
+  check_tool podman --version
 
-	if [ ! -d "${SCRIPT_HOME}/initramfs" ]; then
-		mkdir -pv "${SCRIPT_HOME}/initramfs" &&
-			chown -R 1000:1000 "${SCRIPT_HOME}/initramfs"
-	fi
+  if [ ! -d "${SCRIPT_HOME}/initramfs" ]; then
+    mkdir -pv "${SCRIPT_HOME}/initramfs" &&
+      chown -R 1000:1000 "${SCRIPT_HOME}/initramfs"
+  fi
 }
 
 check_tools &&
-	docker build -t base_image:nocte base_image &&
-	docker build -t u-boot:nocte stage2_u-boot &&
-	docker build -t busybox:nocte stage3_busybox &&
-	docker build -t initramfs:nocte stage4_initramfs &&
-	docker build -t final:nocte final_image &&
-	[ -d "${FINAL_DIR}" ] || mkdir -p "${FINAL_DIR}" &&
-	docker run --rm \
-		-v "${FINAL_DIR}":/home/uboot/final/ \
-		final:nocte \
-		bash -c 'cp -v ${FIT_IMAGE} ${UBOOT_DIR}/u-boot.bin ${KEY_DIR}/* /home/uboot/final/'
+  sudo podman build --dns 1.1.1.1 -t base_image:nocte base_image &&
+  sudo podman build --dns 1.1.1.1 -t u-boot:nocte stage2_u-boot &&
+  sudo podman build --dns 1.1.1.1 -t busybox:nocte stage3_busybox &&
+  sudo podman build --cap-add CAP_MKNOD -t initramfs:nocte stage4_initramfs &&
+  sudo podman build -t final:nocte final_image &&
+  [ -d "${FINAL_DIR}" ] || mkdir -p "${FINAL_DIR}" &&
+  sudo podman run --rm \
+    -v "${FINAL_DIR}":/home/uboot/final/ \
+    final:nocte \
+    bash -c 'cp -v ${FIT_IMAGE} ${UBOOT_DIR}/u-boot.bin ${KEY_DIR}/* /home/uboot/final/'
 
 #docker image prune --filter label=stage=builder &&
 
