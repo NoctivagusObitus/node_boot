@@ -13,23 +13,29 @@ check_tool() {
 check_tools() {
   check_tool podman --version
 
-  if [ ! -d "${SCRIPT_HOME}/initramfs" ]; then
-    mkdir -pv "${SCRIPT_HOME}/initramfs" &&
-      chown -R 1000:1000 "${SCRIPT_HOME}/initramfs"
-  fi
+  # if [ ! -d "${SCRIPT_HOME}/initramfs" ]; then
+  #   mkdir -pv "${SCRIPT_HOME}/initramfs" &&
+  #     chown -R 1000:1000 "${SCRIPT_HOME}/initramfs"
+  # fi
 }
 
 check_tools &&
+  echo "build 0" &&
   sudo podman build --dns 1.1.1.1 -t base_image:nocte base_image &&
+  echo "build 1" &&
   sudo podman build --dns 1.1.1.1 -t u-boot:nocte stage2_u-boot &&
+  echo "build 2" &&
   sudo podman build --dns 1.1.1.1 -t busybox:nocte stage3_busybox &&
+  echo "build 3" &&
   sudo podman build --cap-add CAP_MKNOD -t initramfs:nocte stage4_initramfs &&
-  sudo podman build -t final:nocte final_image &&
+  echo "build 4" &&
+  sudo podman build -t final:nocte final_image && {
   [ -d "${FINAL_DIR}" ] || mkdir -p "${FINAL_DIR}" &&
-  sudo podman run --rm \
-    -v "${FINAL_DIR}":/home/uboot/final/ \
-    final:nocte \
-    bash -c 'cp -v ${FIT_IMAGE} ${UBOOT_DIR}/u-boot.bin ${KEY_DIR}/* /home/uboot/final/'
+    sudo podman run --rm \
+      -v "${FINAL_DIR}":/home/uboot/final/ \
+      final:nocte \
+      bash -c 'cp -v ${FIT_IMAGE} ${UBOOT_DIR}/u-boot.bin ${KEY_DIR}/* /home/uboot/final/'
+}
 
 #docker image prune --filter label=stage=builder &&
 

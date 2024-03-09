@@ -1,7 +1,8 @@
 FROM base_image:nocte
 
-ENV UBOOT_VERSION=v2024.01  \
-  PLATFORM=rpi_3_b_plus \
+#   PLATFORM=rpi_arm64 \
+ENV UBOOT_VERSION=v2024.04-rc3 \
+  PLATFORM=qemu_arm64 \
   CROSS_COMPILE=/opt/gcc-13.2.0-nolibc/aarch64-linux/bin/aarch64-linux- \
   ARCH=arm64 \
   UBOOT_DIR=${HOME}/u-boot \

@@ -1,8 +1,10 @@
+CONFIG_CMD_MD5SUM=y
 CONFIG_CMD_WGET=y
 CONFIG_PROT_TCP=y
 CONFIG_PROT_TCP_SACK=y
 CONFIG_CMD_DNS=y
 CONFIG_IPV6=y
+CONFIG_IPV6_ROUTER_DISCOVERY=y
 CONFIG_FIT=y
 CONFIG_TIMESTAMP=y
 CONFIG_FIT_FULL_CHECK=y
@@ -14,7 +16,12 @@ CONFIG_FIT_RSASSA_PSS=y
 CONFIG_FIT_CIPHER=y
 CONFIG_DEFAULT_FDT_FILE="signed-devicetree.dtb"
 CONFIG_ENV_IS_NOWHERE=y
-CONFIG_BOOTCOMMAND="setenv bootargs \"console=serial0,115200 console=tty1 initrd=/init elevator=deadline fsck.repair=yes rootwait\";setenv autoload no;setenv fit_img_addr 0x3200000;dhcp;dns markus fit_image_host; wget ${fit_img_addr } ${fit_image_host}:/image.fit;bootm ${fit_img_addr }#config-1;"
+# dns markus fit_image_host
+# setenv fit_img_addr 0x3200000
+# usb start;setenv ethact asix_eth;setenv ethact usb_ethe;usb stop;
+# initrd=/init
+# setenv bootargs \"console=ttyAMA0,115200 init=/init elevator=deadline earlyprintk=serial net.ifnames=0 nokaslr fsck.repair=yes\";
+CONFIG_BOOTCOMMAND="setenv autoload no;setenv serverip 192.168.50.9;setenv httpdstp 8080;dhcp;wget ${kernel_addr_r} /image.fit;bootm"
 CONFIG_NET_TFTP_VARS=n
 CONFIG_CMD_NFS=n
 # CONFIG_CMD_NFS is not set

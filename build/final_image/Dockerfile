@@ -26,12 +26,6 @@ RUN test -n "${UBOOT_DIR}" \
   -key "${KEY_DIR}"/dev.key \
   -out "${KEY_DIR}"/dev.crt \
   && cd ${FILES} \
-  && mv -v ${INITRAMFS_DIR}/initramfs.cpio ${FILES}/ \
-  && "${UBOOT_DIR}/tools/mkimage" -D "-I dts -O dtb -p 2000" -f "${FILES}/image.its" "${FIT_IMAGE}" \
-  && "${UBOOT_DIR}/tools/mkimage" -D "-I dts -O dtb -p 2000" -F -k "${KEY_DIR}" -K "${DTB_FILE}" -r "${FIT_IMAGE}" \
-  && exit 0 \
-  || env \
-  && echo "xxx" \
-  && ls ${FILES} \
-  && find "${FILES}" -name "*.dtb" \
-  && exit 1
+  && mv -v ${HOME}/initramfs.cpio ${FILES}/ \
+  && "${UBOOT_DIR}/tools/mkimage" -f "${FILES}/image.its" "${FIT_IMAGE}" \
+  && "${UBOOT_DIR}/tools/mkimage" -F -k "${KEY_DIR}" -K "${DTB_FILE}" -r "${FIT_IMAGE}"

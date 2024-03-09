@@ -11,8 +11,6 @@ RUN echo "update and install cross compiler" \
   && apt-get upgrade -y \
   && apt-get install -y \
   gcc-arm-linux-gnueabi \
-  libncurses5-dev \
-  gawk \
   && rm -r /var/lib/apt/lists/*
 
 USER uboot

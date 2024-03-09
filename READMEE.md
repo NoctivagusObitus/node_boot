@@ -5,6 +5,8 @@ https://source.denx.de/u-boot/u-boot/-/blob/master/doc/build/docker.rst
 
 ## test signiture
 https://github.com/ARM-software/u-boot/blob/master/doc/uImage.FIT/signature.txt
+### rpi3-b-plus u-boot compile
+https://github.com/mhomran/u-boot-rpi3-b-plus
 ### nice raspberry pi 3 initramfs tutorial
 https://www.nayab.xyz/book/embedded-linux-rpi3-000-intro#learning-path
 ### signing u-boot build
@@ -19,3 +21,7 @@ https://hechao.li/2021/12/20/Boot-Raspberry-Pi-4-Using-uboot-and-Initramfs/
 # OPTEE setup
 https://github.com/NVISOsecurity/VerifiedBootRPi3/blob/master/instructions.md
 
+
+## build linux kernel with (not enabled by default)
+- CONFIG_BLK_DEV_RAM
+- BLK_DEV_INITRD

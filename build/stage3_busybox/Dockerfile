@@ -21,4 +21,4 @@ RUN mkdir -p ${INITRAMFS_DIR} \
   && make -j "$(nproc)" \
   && make install \
   && echo "build initramfs" \
-  && cp -r _install/* "${INITRAMFS_DIR}/"
+  && cp -r "${BUSYBOX_DIR}"/_install/* "${INITRAMFS_DIR}/"
