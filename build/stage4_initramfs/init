@@ -1,6 +1,8 @@
 #!/bin/sh
 
-echo
-echo "rapi net boot"
-echo
+echo "### setup networking ###"
+ifconfig eth0 up
+udhcpc -t 5 -q -s udhcpc_setup.sh
+echo "### network done ###"
+
 /bin/busybox sh
